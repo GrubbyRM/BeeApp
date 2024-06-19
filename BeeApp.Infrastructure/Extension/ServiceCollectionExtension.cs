@@ -1,5 +1,7 @@
-﻿using BeeApp.Infrastructure.Persistence;
+﻿using BeeApp.Domain.Interfaces;
+using BeeApp.Infrastructure.Persistence;
 using BeeApp.Infrastructure.Seeders;
+using BeeApp.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +22,9 @@ namespace BeeApp.Infrastructure.Extension
                 configuration.GetConnectionString("BeeApp")));
 
             services.AddScoped<BeeAppSeeder>();
+
+            //BJ: register addInspectionRepository
+            services.AddScoped<IInspectionRepository, InspectionRepository>();
         }
     }
 }
