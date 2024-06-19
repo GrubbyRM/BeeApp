@@ -20,6 +20,10 @@ namespace BeeApp.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Inspection inspection)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(inspection);
+            }
             await _inspectionService.Create(inspection);
             //BJ: redirected to
             return RedirectToAction(nameof(Create));
