@@ -2,7 +2,6 @@ using BeeApp.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using BeeApp.Infrastructure.Extension;
 using BeeApp.Infrastructure.Seeders;
-using BeeApp.Aplication.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +10,6 @@ builder.Services.AddControllersWithViews();
 
 //BJ: Dependency Incjection from Infrastructure
 builder.Services.AddInfrastructure(builder.Configuration);
-
-//BJ: Dependency Incjection from Application
-builder.Services.AddApplication();
 
 var app = builder.Build();
 
