@@ -1,6 +1,7 @@
 ﻿using BeeApp.Domain.Entities;
 using BeeApp.Domain.Interfaces;
 using BeeApp.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,8 @@ namespace BeeApp.Infrastructure.Repositories
             _dbContext.Add(inspection);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Inspection>> GetAll()
+        => await _dbContext.Inspections.ToListAsync();
     }
 }

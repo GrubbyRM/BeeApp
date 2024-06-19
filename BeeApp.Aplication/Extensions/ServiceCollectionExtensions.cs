@@ -1,4 +1,7 @@
-﻿using BeeApp.Aplication.Services;
+﻿using BeeApp.Aplication.Inspection;
+using BeeApp.Aplication.Services;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,6 +16,10 @@ namespace BeeApp.Aplication.Extensions
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IInspectionService, InspectionService>();
+
+            services.AddValidatorsFromAssemblyContaining<InspectionValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
         }
     }
 }

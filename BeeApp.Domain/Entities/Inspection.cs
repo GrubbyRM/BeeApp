@@ -10,8 +10,6 @@ namespace BeeApp.Domain.Entities
     public class Inspection
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Data przegladu jest wymagana")]
-        [DataType(DataType.Date)]
         public DateTime CreatedAt { get; set; }
         public bool QueenBee { get; set; }
         public bool BeeBrood { get; set; }

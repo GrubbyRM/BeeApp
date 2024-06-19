@@ -12,6 +12,13 @@ namespace BeeApp.MVC.Controllers
             _inspectionService = inspectionService;
         }
 
+        //BJ: fetch all inspections
+        public async Task<IActionResult> Index()
+        {
+            var inspections = await _inspectionService.GetAll();
+            return View(inspections);
+        }
+
         //BJ: create form
         public IActionResult Create()
         {
@@ -25,8 +32,8 @@ namespace BeeApp.MVC.Controllers
                 return View(inspection);
             }
             await _inspectionService.Create(inspection);
-            //BJ: redirected to
-            return RedirectToAction(nameof(Create));
+            //BJ: redirected to Index
+            return RedirectToAction(nameof(Index));
 
         } 
     }

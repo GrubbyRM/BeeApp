@@ -20,5 +20,12 @@ namespace BeeApp.Aplication.Services
 
             await _inspectionRepository.Create(inspection);
         }
+
+        public async Task<IEnumerable<Domain.Entities.Inspection>> GetAll()
+        {
+
+            var inspections = await _inspectionRepository.GetAll();
+            return inspections;
+        }
     }
 }

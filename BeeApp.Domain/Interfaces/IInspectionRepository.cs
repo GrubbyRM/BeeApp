@@ -10,5 +10,6 @@ namespace BeeApp.Domain.Interfaces
     public interface IInspectionRepository
     {
         Task Create(Domain.Entities.Inspection inspection);
+        Task<IEnumerable<Domain.Entities.Inspection>> GetAll();
     }
 }
