@@ -3,11 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using BeeApp.Infrastructure.Extension;
 using BeeApp.Infrastructure.Seeders;
 using BeeApp.Aplication.Extensions;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
 //BJ: Dependency Incjection from Infrastructure
 builder.Services.AddInfrastructure(builder.Configuration);

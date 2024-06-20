@@ -28,5 +28,8 @@ namespace BeeApp.Infrastructure.Repositories
 
         public Task<Domain.Entities.Inspection> GetById(int id)
         => _dbContext.Inspections.FirstAsync(c=> c.Id == id);
+
+        public Task Commit()
+        => _dbContext.SaveChangesAsync();
     }
 }

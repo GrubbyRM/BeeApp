@@ -1,0 +1,87 @@
+﻿@model BeeApp.Aplication.Inspection.Commands.EditInspection.EditInspectionCommand
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit @Model.Id</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group m-3">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check m-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="QueenBee" /> @Html.DisplayNameFor(model => model.QueenBee)
+                </label>
+            </div>
+            <div class="form-group form-check m-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BeeBrood" /> @Html.DisplayNameFor(model => model.BeeBrood)
+                </label>
+            </div>
+            <div class="form-group form-check m-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Eggs" /> @Html.DisplayNameFor(model => model.Eggs)
+                </label>
+            </div>
+            <div class="form-group form-check m-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Feed" /> @Html.DisplayNameFor(model => model.Feed)
+                </label>
+            </div>
+            <div class="form-group form-check m-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="QueenCell" /> @Html.DisplayNameFor(model => model.QueenCell)
+                </label>
+            </div>
+            <div class="form-group form-check m-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="BeeBread" /> @Html.DisplayNameFor(model => model.BeeBread)
+                </label>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="BeehiveDetails.Id" class="control-label"></label>
+                <input asp-for="BeehiveDetails.Id" class="form-control" />
+                <span asp-validation-for="BeehiveDetails.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="BeehiveDetails.BeehiveType" class="control-label"></label>
+                <input asp-for="BeehiveDetails.BeehiveType" class="form-control" />
+                <span asp-validation-for="BeehiveDetails.BeehiveType" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="BeehiveDetails.QueenType" class="control-label"></label>
+                <input asp-for="BeehiveDetails.QueenType" class="form-control" />
+                <span asp-validation-for="BeehiveDetails.QueenType" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="BeehiveDetails.LastInspection" class="control-label"></label>
+                <input asp-for="BeehiveDetails.LastInspection" class="form-control" />
+                <span asp-validation-for="BeehiveDetails.LastInspection" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

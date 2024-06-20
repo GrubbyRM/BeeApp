@@ -12,5 +12,6 @@ namespace BeeApp.Domain.Interfaces
         Task Create(Domain.Entities.Inspection inspection);
         Task<IEnumerable<Domain.Entities.Inspection>> GetAll();
         Task<Domain.Entities.Inspection> GetById(int id);
+        Task Commit();
     }
 }

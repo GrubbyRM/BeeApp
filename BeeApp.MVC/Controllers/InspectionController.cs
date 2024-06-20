@@ -1,18 +1,23 @@
 ﻿using BeeApp.Aplication.Inspection.Commands.CreateInspection;
 using BeeApp.Aplication.Inspection.Queries.GetAllInspections;
 using BeeApp.Aplication.Inspection.Queries.GetInspectionById;
+using AutoMapper;
 using BeeApp.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using BeeApp.Aplication.Inspection.Commands.EditInspection;
 
 namespace BeeApp.MVC.Controllers
 {
     public class InspectionController : Controller
     {
         private readonly IMediator _mediator;
-        public InspectionController(IMediator mediator)
+        private readonly IMapper _mapper;
+        public InspectionController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         //BJ: fetch all inspections
@@ -28,11 +33,39 @@ namespace BeeApp.MVC.Controllers
             return View();
         }
 
+        //BJ: inspection detailed view
         [Route("Inspection/{inspectionId}/Details")]
         public async Task<IActionResult> Details(int inspectionId)
         {
             var inspection = await _mediator.Send(new GetInspectionByIdQuery(inspectionId));
             return View(inspection);
+        }
+
+        [Route("Inspection/{inspectionId}/Edit")]
+        public async Task<IActionResult> Edit(int inspectionId)
+        {
+            var inspection = await _mediator.Send(new GetInspectionByIdQuery(inspectionId));
+
+            EditInspectionCommand model = _mapper.Map<EditInspectionCommand>(inspection);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Inspection/{inspectionId}/Edit")]
+        public async Task<IActionResult> Edit(int inspectionId, EditInspectionCommand command)
+        {
+            //BJ: temporary fix to avoid error with update inspection
+            command.Id = inspectionId;
+
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+            await _mediator.Send(command);
+            //BJ: redirected to Index
+            return RedirectToAction(nameof(Index));
+
         }
 
         [HttpPost]
