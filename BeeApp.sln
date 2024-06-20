@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeeApp.Aplication", "BeeApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeeApp.Infrastructure", "BeeApp.Infrastructure\BeeApp.Infrastructure.csproj", "{32F9C6AD-7FAD-42C9-A835-6683A6DF13C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeeApp.AplicationTests1", "BeeApp.AplicationTests1\BeeApp.AplicationTests1.csproj", "{284AE78A-5CEF-4733-BB73-03FBCF93F41E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{32F9C6AD-7FAD-42C9-A835-6683A6DF13C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32F9C6AD-7FAD-42C9-A835-6683A6DF13C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32F9C6AD-7FAD-42C9-A835-6683A6DF13C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{284AE78A-5CEF-4733-BB73-03FBCF93F41E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284AE78A-5CEF-4733-BB73-03FBCF93F41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284AE78A-5CEF-4733-BB73-03FBCF93F41E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284AE78A-5CEF-4733-BB73-03FBCF93F41E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

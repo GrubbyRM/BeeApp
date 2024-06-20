@@ -32,7 +32,10 @@ namespace BeeApp.MVC.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            
+            if(User.Identity == null || !User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             return View();
         }
 
@@ -45,6 +48,7 @@ namespace BeeApp.MVC.Controllers
         }
 
         [Route("Inspection/{inspectionId}/Edit")]
+        [Authorize]
         public async Task<IActionResult> Edit(int inspectionId)
         {
             var inspection = await _mediator.Send(new GetInspectionByIdQuery(inspectionId));
@@ -56,6 +60,7 @@ namespace BeeApp.MVC.Controllers
 
         [HttpPost]
         [Route("Inspection/{inspectionId}/Edit")]
+        [Authorize]
         public async Task<IActionResult> Edit(int inspectionId, EditInspectionCommand command)
         {
             //BJ: temporary fix to avoid  update inspection error

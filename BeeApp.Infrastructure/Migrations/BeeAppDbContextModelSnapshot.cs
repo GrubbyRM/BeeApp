@@ -61,7 +61,7 @@ namespace BeeApp.Infrastructure.Migrations
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("Inspections");
+                    b.ToTable("Inspections", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -272,7 +272,7 @@ namespace BeeApp.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("CreatedById");
 
-                    b.OwnsOne("BeeApp.Domain.Entities.BeehiveDetails", "BeehiveDetails", b1 =>
+                    b.OwnsOne("BeeApp.Domain.Entities.Inspection.BeehiveDetails#BeeApp.Domain.Entities.BeehiveDetails", "BeehiveDetails", b1 =>
                         {
                             b1.Property<int>("InspectionId")
                                 .HasColumnType("int");
@@ -293,7 +293,7 @@ namespace BeeApp.Infrastructure.Migrations
 
                             b1.HasKey("InspectionId");
 
-                            b1.ToTable("Inspections");
+                            b1.ToTable("Inspections", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("InspectionId");
