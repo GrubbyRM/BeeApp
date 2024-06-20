@@ -10,13 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BeeApp.Aplication.Mappings;
+using BeeApp.Aplication.ApplicationUser;
 
 namespace BeeApp.Aplication.Extensions
 {
     public static class ServiceCollectionExtension
     {
+        //BJ: Dependency Injection from Application
         public static void AddApplication(this IServiceCollection services)
         {
+            services.AddScoped<IUserContext, UserContext>();
             services.AddAutoMapper(typeof(InspectionMappingProfile));
             services.AddMediatR(typeof(CreateInspectionCommand));
 

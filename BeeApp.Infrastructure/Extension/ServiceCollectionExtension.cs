@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace BeeApp.Infrastructure.Extension
 {
@@ -20,6 +21,9 @@ namespace BeeApp.Infrastructure.Extension
         {
             services.AddDbContext<BeeAppDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("BeeApp")));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<BeeAppDbContext>();
 
             services.AddScoped<BeeAppSeeder>();
 

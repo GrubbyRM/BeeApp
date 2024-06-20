@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using BeeApp.Aplication.Inspection.Commands.EditInspection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeeApp.MVC.Controllers
 {
@@ -27,9 +28,11 @@ namespace BeeApp.MVC.Controllers
             return View(inspections);
         }
 
-        //BJ: create form
+        //BJ: create new inspection
+        [Authorize]
         public IActionResult Create()
         {
+            
             return View();
         }
 
@@ -55,7 +58,7 @@ namespace BeeApp.MVC.Controllers
         [Route("Inspection/{inspectionId}/Edit")]
         public async Task<IActionResult> Edit(int inspectionId, EditInspectionCommand command)
         {
-            //BJ: temporary fix to avoid error with update inspection
+            //BJ: temporary fix to avoid  update inspection error
             command.Id = inspectionId;
 
             if (!ModelState.IsValid)
@@ -69,6 +72,7 @@ namespace BeeApp.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(CreateInspectionCommand command)
         {
             if(!ModelState.IsValid)
