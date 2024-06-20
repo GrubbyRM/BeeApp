@@ -1,4 +1,5 @@
 ﻿using BeeApp.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BeeApp.Infrastructure.Persistence
 {
-    public class BeeAppDbContext : DbContext
+    public class BeeAppDbContext : IdentityDbContext
     {
         public BeeAppDbContext(DbContextOptions<BeeAppDbContext> options) : base(options)
         {
@@ -18,6 +19,7 @@ namespace BeeApp.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Domain.Entities.Inspection>()
                 .OwnsOne(c => c.BeehiveDetails);
         }
