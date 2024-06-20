@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeeApp.Aplication.Inspection
+namespace BeeApp.Aplication.Inspection.Commands.CreateInspection
 {
-    public class InspectionValidator : AbstractValidator<BeeApp.Domain.Entities.Inspection>
+    public class InspectionValidator : AbstractValidator<CreateInspectionCommand>
     {
         public InspectionValidator()
         {

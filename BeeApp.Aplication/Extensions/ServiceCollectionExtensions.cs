@@ -1,7 +1,8 @@
-﻿using BeeApp.Aplication.Inspection;
-using BeeApp.Aplication.Services;
+﻿using BeeApp.Aplication.Inspection.Commands.CreateInspection;
+using MediatR;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace BeeApp.Aplication.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IInspectionService, InspectionService>();
+            services.AddMediatR(typeof(CreateInspectionCommand));
 
             services.AddValidatorsFromAssemblyContaining<InspectionValidator>()
                 .AddFluentValidationAutoValidation()

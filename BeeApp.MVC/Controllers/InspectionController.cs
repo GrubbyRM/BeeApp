@@ -1,21 +1,24 @@
-﻿using BeeApp.Aplication.Services;
+﻿using BeeApp.Aplication.Inspection.Commands.CreateInspection;
+using BeeApp.Aplication.Inspection.Queries.GetAllInspections;
+using BeeApp.Aplication.Inspection.Queries.GetInspectionById;
 using BeeApp.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeeApp.MVC.Controllers
 {
     public class InspectionController : Controller
     {
-        private readonly IInspectionService _inspectionService;
-        public InspectionController(IInspectionService inspectionService)
+        private readonly IMediator _mediator;
+        public InspectionController(IMediator mediator)
         {
-            _inspectionService = inspectionService;
+            _mediator = mediator;
         }
 
         //BJ: fetch all inspections
         public async Task<IActionResult> Index()
         {
-            var inspections = await _inspectionService.GetAll();
+            var inspections = await _mediator.Send(new GetAllInspectionsQuery());
             return View(inspections);
         }
 
@@ -24,14 +27,22 @@ namespace BeeApp.MVC.Controllers
         {
             return View();
         }
+
+        [Route("Inspection/{inspectionId}/Details")]
+        public async Task<IActionResult> Details(int inspectionId)
+        {
+            var inspection = await _mediator.Send(new GetInspectionByIdQuery(inspectionId));
+            return View(inspection);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Create(Inspection inspection)
+        public async Task<IActionResult> Create(CreateInspectionCommand command)
         {
             if(!ModelState.IsValid)
             {
-                return View(inspection);
+                return View(command);
             }
-            await _inspectionService.Create(inspection);
+            await _mediator.Send(command);
             //BJ: redirected to Index
             return RedirectToAction(nameof(Index));
 
